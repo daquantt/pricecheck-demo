@@ -7,13 +7,19 @@ const registerForm = document.querySelector("#registerForm");
 const userDisplay = navButtons.children[0];
 const registerMsg = document.querySelector("#register-msg");
 const loginMsg = document.querySelector("#login-msg");
+const searchForm = document.querySelector("#search-form");
+const results = document.querySelector("#results");
 
 const users = [
   { username: "Joe", password: "Joe123" },
   { username: "Pam", password: "Pam123" },
 ];
 
-const products = [];
+const products = [
+  { product: "Milk", date: "2024-05-01", price: 3.99, vendor: "Save On Foods", user: "Joe", entered: "2024-05-10" },
+  { product: "Eggs", date: "2024-04-25", price: 6.49, vendor: "Co-op", user: "Joe", entered: "2024-05-10" },
+  { product: "Bread", date: "2023-12-15", price: 2.79, vendor: "Walmart", user: "Joe", entered: "2024-05-10" },
+];
 
 let loggedInUser;
 
@@ -83,6 +89,64 @@ registerForm.addEventListener("submit", (event) => {
   closeButton.addEventListener("click", () => {
     registerMsg.innerText = "";
   });
+});
+
+const showProducts = () => {
+  results.innerHTML = "";
+  let count = 1;
+  products.forEach((product) => {
+    results.innerHTML += `
+      <tr>
+        <td scope="row">${count}</td>
+        <td>${product.date}</td>
+        <td>${product.product}</td>
+        <td>${product.price}</td>
+        <td>${product.vendor}</td>
+        <td>${product.user}: ${product.entered}</td>
+      </tr>
+    `;
+    count++;
+  });
+};
+
+showProducts();
+
+const filterItems = (filterValue) => {
+  //case insensitive search(compare lower case values)
+  let lowerCaseFilterValue = filterValue.toLowerCase();
+
+  results.innerHTML = "";
+  let count = 1;
+
+  products.forEach((prod) => {
+    let productDesc = prod.product.toLowerCase();
+
+    if (productDesc.includes(lowerCaseFilterValue)) {
+      //lowerCaseFilterValue is in the product description
+      //loop through using foreach
+      results.innerHTML += `
+        <tr>
+          <td scope="row">${count}</td>
+          <td>${prod.date}</td>
+          <td>${prod.product}</td>
+          <td>${prod.price}</td>
+          <td>${prod.vendor}</td>
+          <td>${prod.user}: ${prod.entered}</td>
+        </tr>
+      `;
+      count++;
+    }
+  });
+};
+
+// get the form value and call the function filterItems
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  //get the value from the user
+  let filterValue = event.target.elements["search"].value;
+
+  filterItems(filterValue);
 });
 
 logoutBtn.addEventListener("click", logout);

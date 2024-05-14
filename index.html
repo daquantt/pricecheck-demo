@@ -23,7 +23,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse d-lg-flex" id="navbarMenu">
+          <div class="collapse navbar-collapse d-lg-flex justify-content-md-between" id="navbarMenu">
             <a class="navbar-brand col-lg-3 me-0" href="#">PriceCheck</a>
             <ul class="navbar-nav col-lg-6 justify-content-lg-center">
               <li class="nav-item">
@@ -61,7 +61,7 @@
           <h1 class="display-5 fw-bold">Welcome to PriceCheck!</h1>
           <p class="fs-4">All your prices under one roof!</p>
         </div>
-        <form action="/search" method="GET" class="col-sm-4 text-center mx-auto">
+        <form id="search-form" action="#" method="GET" class="col-sm-4 text-center mx-auto">
           <input name="search" class="form-control" type="search" placeholder="Search Products" aria-label="Search" />
           <button class="btn btn-outline-success my-3" type="submit">Search</button>
         </form>
@@ -121,6 +121,24 @@
               </form>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="container p-3 my-4 border border-secondary-subtle rounded-3">
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date of Price</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Vendor</th>
+                <th scope="col">Entered By:</th>
+              </tr>
+            </thead>
+            <tbody id="results" class="table-group-divider"></tbody>
+          </table>
         </div>
       </div>
     </main>
