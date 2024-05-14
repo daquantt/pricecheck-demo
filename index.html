@@ -56,15 +56,11 @@
     </header>
 
     <main>
-      <div id="jumbotron" class="container p-5 my-4 bg-body-secondary rounded-3">
-        <div class="pb-5 text-center">
+      <div id="jumbotron" class="container p-4 my-4 bg-body-secondary rounded-3">
+        <div class="text-center">
           <h1 class="display-5 fw-bold">Welcome to PriceCheck!</h1>
           <p class="fs-4">All your prices under one roof!</p>
         </div>
-        <form id="search-form" action="#" method="GET" class="col-sm-4 text-center mx-auto">
-          <input name="search" class="form-control" type="search" placeholder="Search Products" aria-label="Search" />
-          <button class="btn btn-outline-success my-3" type="submit">Search</button>
-        </form>
       </div>
 
       <!-- Login Modal -->
@@ -124,6 +120,62 @@
         </div>
       </div>
 
+      <!-- Input Product Modal -->
+      <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="inputModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="inputModalLabel">Create Product</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="inputForm" class="text-center">
+                <div class="form-group row mb-2">
+                  <label for="product-date" class="col-md-3 col-form-label text-md-right">Date of Price:</label>
+                  <div class="col-md-9">
+                    <input id="product-date" type="date" class="form-control" name="product-date" value="" required autocomplete="on" />
+                  </div>
+                </div>
+
+                <div class="form-group row mb-2">
+                  <label for="product-desc" class="col-md-3 col-form-label text-md-right">Description:</label>
+                  <div class="col-md-9">
+                    <input id="product-desc" type="text" class="form-control" name="product-desc" value="" required />
+                  </div>
+                </div>
+
+                <div class="form-group row mb-2">
+                  <label for="product-price" class="col-md-3 col-form-label text-md-right">Price:</label>
+                  <div class="col-md-9">
+                    <input id="product-price" type="text" class="form-control" name="product-price" value="" required />
+                  </div>
+                </div>
+
+                <div class="form-group row mb-2">
+                  <label for="product-vendor" class="col-md-3 col-form-label text-md-right">Vendor:</label>
+                  <div class="col-md-9">
+                    <input id="product-vendor" type="text" class="form-control" name="product-vendor" value="" required />
+                  </div>
+                </div>
+
+                <button id="inputSubmitBtn" type="submit" class="btn btn-success mt-3 px-4">Upload</button>
+                <button type="button" class="btn btn-secondary mt-3 px-4" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                <p id="input-msg" class="mt-3"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container d-flex justify-content-end">
+        <form id="search-form" action="#" method="GET" class="d-flex" role="search">
+          <input name="search" class="form-control me-2" type="search" placeholder="Search Products" aria-label="Search" />
+          <button class="btn btn-secondary me-2" type="submit">Search</button>
+        </form>
+        <button class="btn btn-success d-inline-block" type="button" data-bs-toggle="modal" data-bs-target="#inputModal">Create Product</button>
+      </div>
+
+      <!-- Products List -->
       <div class="container p-3 my-4 border border-secondary-subtle rounded-3">
         <div class="table-responsive">
           <table class="table table-sm">

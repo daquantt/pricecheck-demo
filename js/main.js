@@ -9,6 +9,7 @@ const registerMsg = document.querySelector("#register-msg");
 const loginMsg = document.querySelector("#login-msg");
 const searchForm = document.querySelector("#search-form");
 const results = document.querySelector("#results");
+const inputForm = document.querySelector("#inputForm");
 
 const users = [
   { username: "Joe", password: "Joe123" },
@@ -23,8 +24,6 @@ const products = [
 
 let loggedInUser;
 
-const login = () => {};
-
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -36,21 +35,14 @@ loginForm.addEventListener("submit", (event) => {
   if (userIndex >= 0 && password.value === users[userIndex].password) {
     loggedInUser = username.value;
     //display text
-    userDisplay.innerText = `User: ${loggedInUser}`;
     loginMsg.innerText = `Login Successful! Welcome ${loggedInUser}`;
-    //hide other buttons
     loginSubmitBtn.classList.remove("d-none");
     loginSubmitBtn.classList.add("d-none");
-    registerBtn.classList.remove("d-none");
-    registerBtn.classList.add("d-none");
-    loginBtn.classList.remove("d-none");
-    loginBtn.classList.add("d-none");
-    //show logout button
-    logoutBtn.classList.remove("d-none");
   } else {
     loginMsg.innerText = "Login Unsuccessful! Try Again...";
   }
 
+  displayHeaderBtns(loggedInUser);
   loginForm.reset();
 });
 
@@ -61,12 +53,10 @@ const logout = () => {
   loginMsg.innerText = "";
   registerMsg.innerText = "";
   //show buttons
-  loginBtn.classList.remove("d-none");
-  registerBtn.classList.remove("d-none");
   loginSubmitBtn.classList.remove("d-none");
   registerSubmitBtn.classList.remove("d-none");
-  //hide buttons
-  logoutBtn.classList.add("d-none");
+
+  displayHeaderBtns(loggedInUser);
 };
 
 registerForm.addEventListener("submit", (event) => {
@@ -139,7 +129,57 @@ const filterItems = (filterValue) => {
   });
 };
 
-// get the form value and call the function filterItems
+const displayHeaderBtns = (loggedInUser) => {
+  if (!loggedInUser) {
+    //show buttons
+    loginBtn.classList.remove("d-none");
+    registerBtn.classList.remove("d-none");
+    loginSubmitBtn.classList.remove("d-none");
+    registerSubmitBtn.classList.remove("d-none");
+    //hide buttons
+    logoutBtn.classList.add("d-none");
+  } else {
+    //f user is logged in, hide buttons
+    userDisplay.innerText = `User: ${loggedInUser}`;
+    registerBtn.classList.remove("d-none");
+    registerBtn.classList.add("d-none");
+    loginBtn.classList.remove("d-none");
+    loginBtn.classList.add("d-none");
+    //show logout button
+    logoutBtn.classList.remove("d-none");
+  }
+};
+
+// Create products
+inputForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const productDate = event.target.elements["product-date"];
+  const productDesc = event.target.elements["product-desc"];
+  const productPrice = event.target.elements["product-price"];
+  const productVendor = event.target.elements["product-vendor"];
+  const enteredBy = loggedInUser ? loggedInUser : "Guest";
+  const inputMsg = document.querySelector("#input-msg");
+
+  products.push({
+    date: productDate.value,
+    product: productDesc.value,
+    price: productPrice.value,
+    vendor: productVendor.value,
+    user: enteredBy,
+    entered: new Date().toJSON().slice(0, 10),
+  });
+
+  inputMsg.innerText = "Product Uploaded!";
+  setTimeout(() => {
+    inputMsg.innerText = "";
+  }, 3000);
+
+  inputForm.reset();
+  showProducts();
+});
+
+// get search form value and call the function filterItems
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
