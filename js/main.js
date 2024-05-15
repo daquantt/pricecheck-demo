@@ -10,6 +10,7 @@ const loginMsg = document.querySelector("#login-msg");
 const searchForm = document.querySelector("#search-form");
 const results = document.querySelector("#results");
 const inputForm = document.querySelector("#inputForm");
+const scoreboard = document.querySelector("#scoreboard");
 const scores = document.querySelector("#scores");
 
 const users = [
@@ -65,10 +66,14 @@ registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const username = document.querySelector("#registerUsername");
   let password = `${username.value}123`;
-  const registerSubmitBtn = document.querySelector("#registerSubmitBtn");
 
   if (username.value.length < 10 && username.value !== "") {
-    users.push({ username: username.value, password: password });
+    users.push({
+      username: username.value,
+      password: password,
+      joined: new Date().toJSON().slice(0, 10),
+      points: 0,
+    });
     registerMsg.innerText = "Thank you for registering! Please proceed to log in.";
   } else {
     registerMsg.innerText = "Invalid input!";
@@ -94,7 +99,7 @@ const showProducts = () => {
         <td>${product.product}</td>
         <td>${Number(product.price).toFixed(2)}</td>
         <td>${product.vendor}</td>
-        <td>${product.user}: ${product.entered}</td>
+        <td>${product.user}</td>
       </tr>
     `;
     count++;
@@ -187,13 +192,24 @@ inputForm.addEventListener("submit", (event) => {
     entered: new Date().toJSON().slice(0, 10),
   });
 
-  inputMsg.innerText = "Product Uploaded!";
+  //calculate points and add to user
+  let points = 0;
+  if (loggedInUser) {
+    productDesc.value !== "" ? (points += 5) : (points += 0);
+    productVendor.value !== "" ? (points += 5) : (points += 0);
+
+    const userIndex = users.findIndex((user) => user.username === loggedInUser);
+    users[userIndex].points += points;
+  }
+
+  inputMsg.innerText = loggedInUser ? `Product Uploaded! +${points} points` : `Product Uploaded!`;
   setTimeout(() => {
     inputMsg.innerText = "";
   }, 3000);
 
   inputForm.reset();
   showProducts();
+  showUsers();
 });
 
 // get search form value and call the function filterItems
@@ -207,3 +223,17 @@ searchForm.addEventListener("submit", (event) => {
 });
 
 logoutBtn.addEventListener("click", logout);
+
+let homeLink = document.querySelector(".navbar-nav").children[0];
+let scoresLink = document.querySelector(".navbar-nav").children[1];
+let jumbotron = document.querySelector("#jumbotron");
+
+homeLink.addEventListener("click", () => {
+  jumbotron.classList.remove("d-none");
+  scoreboard.classList.add("d-none");
+});
+
+scoresLink.addEventListener("click", () => {
+  jumbotron.classList.add("d-none");
+  scoreboard.classList.remove("d-none");
+});

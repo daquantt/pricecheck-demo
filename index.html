@@ -15,7 +15,7 @@
     <script src="js/main.js" defer></script>
   </head>
 
-  <body onload="showProducts()">
+  <body onload="showProducts(), showUsers()">
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-info" aria-label="Navigation">
         <div class="container">
@@ -30,7 +30,7 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="scores.html">Scores</a>
+                <a class="nav-link" href="#">Scores</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About</a>
@@ -57,6 +57,24 @@
         <div class="text-center">
           <h1 class="display-5 fw-bold">Welcome to PriceCheck!</h1>
           <p class="fs-4">All your prices under one roof!</p>
+        </div>
+      </div>
+
+      <!-- Score List -->
+      <div id="scoreboard" class="container p-3 my-4 border border-secondary-subtle rounded-3 d-none">
+        <h2 class="fw-bold text-center">Scoreboard</h2>
+        <div class="table-responsive">
+          <table class="table table-sm table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Username</th>
+                <th scope="col">Points</th>
+                <th scope="col">Date Joined</th>
+              </tr>
+            </thead>
+            <tbody id="scores" class="table-group-divider"></tbody>
+          </table>
         </div>
       </div>
 
