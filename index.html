@@ -10,8 +10,9 @@
     <title>PriceCheck</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+
     <script src="js/main.js" defer></script>
   </head>
 
@@ -35,9 +36,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">About Us</a></li>
-                  <li><a class="dropdown-item" href="#">Point System</a></li>
-                  <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                  <li><a class="dropdown-item" href="#about">About Us</a></li>
+                  <li><a class="dropdown-item" href="#point-system">Point System</a></li>
                 </ul>
               </li>
             </ul>
@@ -208,11 +208,54 @@
           </table>
         </div>
       </div>
-    </main>
-    <!-- <footer class="py-3 my-4 border-top">
-      <div class="d-flex align-items-center justify-content-center">
-        <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 PriceCheck. All rights reserved.</span>
+
+      <div id="point-system" class="container my-5">
+        <h2 class="text-center">Point System</h2>
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <ul>
+              <li>In order to earn points you must register with us.</li>
+              <li>Once registered, you can create products which earn you points.</li>
+              <li>A post has 4 fields to be completed and 1 is optional.</li>
+              <li>The product and vendor fields earn you 5 points, therefore you can earn a maximum of 10 points per post.</li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </footer> -->
+
+      <div id="about" class="container my-5 pb-5">
+        <h2 class="text-center">About Us</h2>
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="h4">We are powered by you! Join our community and start uploading now!</div>
+          </li>
+          <li class="list-group-item">
+            <div class="h4 font-weight-bold">Users</div>
+            <ul>
+              <li><i class="bi bi-search h4"></i> Search for prices of goods and services.</li>
+              <li><i class="bi bi-card-checklist h4"></i> Compare prices of products.</li>
+              <li><i class="bi bi-people h4"></i> Compare prices of vendors.</li>
+              <li><i class="bi bi-graph-up h4"></i> Track the fluctuation of prices over time.</li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div class="h4 font-weight-bold">Consumers</div>
+            <ul>
+              <li><i class="bi bi-cloud-arrow-up h4"></i> List prices of goods and services purchased.</li>
+              <li><i class="bi bi-ladder h4"></i> Earn points and join the ranks to become a super shopper.</li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div class="h4 font-weight-bold">Vendors</div>
+            <ul>
+              <li><i class="bi bi-shop h4"></i> Make potential customers aware of the products you sell.</li>
+              <li><i class="bi bi-tag h4"></i> List your products at no cost.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </main>
   </body>
 </html>

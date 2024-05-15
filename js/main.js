@@ -231,9 +231,13 @@ let jumbotron = document.querySelector("#jumbotron");
 homeLink.addEventListener("click", () => {
   jumbotron.classList.remove("d-none");
   scoreboard.classList.add("d-none");
+  scoresLink.children[0].classList.remove("active");
+  homeLink.children[0].classList.add("active");
 });
 
 scoresLink.addEventListener("click", () => {
   jumbotron.classList.add("d-none");
   scoreboard.classList.remove("d-none");
+  homeLink.children[0].classList.remove("active");
+  scoresLink.children[0].classList.add("active");
 });
