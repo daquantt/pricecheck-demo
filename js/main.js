@@ -10,10 +10,12 @@ const loginMsg = document.querySelector("#login-msg");
 const searchForm = document.querySelector("#search-form");
 const results = document.querySelector("#results");
 const inputForm = document.querySelector("#inputForm");
+const scores = document.querySelector("#scores");
 
 const users = [
-  { username: "Joe", password: "Joe123" },
-  { username: "Pam", password: "Pam123" },
+  { username: "Joe", password: "Joe123", joined: "2024-05-01", points: 5 },
+  { username: "Pam", password: "Pam123", joined: "2024-05-10", points: 20 },
+  { username: "Tom", password: "Tom123", joined: "2024-05-11", points: 40 },
 ];
 
 const products = [
@@ -90,7 +92,7 @@ const showProducts = () => {
         <td scope="row">${count}</td>
         <td>${product.date}</td>
         <td>${product.product}</td>
-        <td>${product.price}</td>
+        <td>${Number(product.price).toFixed(2)}</td>
         <td>${product.vendor}</td>
         <td>${product.user}: ${product.entered}</td>
       </tr>
@@ -99,7 +101,22 @@ const showProducts = () => {
   });
 };
 
-showProducts();
+const showUsers = () => {
+  let sortedUsers = users.sort((a, b) => b.points - a.points);
+  scores.innerHTML = "";
+  let count = 1;
+  sortedUsers.forEach((user) => {
+    scores.innerHTML += `
+      <tr>
+        <td scope="row">${count}</td>
+        <td>${user.username}</td>
+        <td>${user.points}</td>
+        <td>${user.joined}</td>
+      </tr>
+    `;
+    count++;
+  });
+};
 
 const filterItems = (filterValue) => {
   //case insensitive search(compare lower case values)
@@ -119,7 +136,7 @@ const filterItems = (filterValue) => {
           <td scope="row">${count}</td>
           <td>${prod.date}</td>
           <td>${prod.product}</td>
-          <td>${prod.price}</td>
+          <td>${Number(prod.price).toFixed(2)}</td>
           <td>${prod.vendor}</td>
           <td>${prod.user}: ${prod.entered}</td>
         </tr>
